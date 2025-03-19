@@ -1,0 +1,189 @@
+<ngx-spinner size="medium" [type]="typeSelected"></ngx-spinner>
+
+<div class="" style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+    <div>
+        <h1 style="margin-bottom: 0;">Banner</h1>
+        <p class="card-title-desc" style="margin-bottom: 0;">
+            <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. -->
+        </p>
+    </div>
+
+    <div class="d-flex">
+        <button class="backBtn" *ngIf="!showCreateFrom" (click)="firstcollapse.toggle()"
+            [attr.aria-expanded]="firstCollapse" aria-controls="collapseExample1"> <i class="bx bx-filter-alt"></i>
+        </button>
+
+        <button class="backBtn" (click)="createForm()">
+            <span *ngIf="showCreateFrom" class="btnText"><i class="bx bx-list-ol"></i></span>
+            <span *ngIf="!showCreateFrom" class="btnText" (click)="clearFields()"><i class='bx bx-plus-medical'></i></span>
+            <i class="uil uil-navigator"></i>
+        </button>
+    </div>
+
+</div>
+
+<div class="">
+    <div class="collapse multi-collapse show"
+        style="background-color: #fff; border: 1px solid #ccc; box-shadow: 0 5px 5px rgba(0,0,0,0.1); padding: 0; margin: 0 0 10px 0;"
+        #firstcollapse="ngbCollapse" [(ngbCollapse)]="firstCollapse">
+        <div class="card border shadow-none card-body text-muted mb-0" style="height: 100px;">
+
+            <div class="row"> </div>
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!showCreateFrom">
+    <ngx-datatable #myTable class="material expandable striped" [columnMode]="ColumnMode.force" [headerHeight]="50"
+        [footerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [rows]="rows">
+        <!-- <ngx-datatable-column name="Heading " prop="heading"></ngx-datatable-column> -->
+        <!-- <ngx-datatable-column name="Description" prop="description"></ngx-datatable-column> -->
+        <ngx-datatable-column name="Banner Link" prop="bannerUrls">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                <span>{{value[0]}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+
+        <!-- <ngx-datatable-column name="Link 2" prop="links">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                <span>{{value[1]}}</span>
+            </ng-template>
+        </ngx-datatable-column> -->
+
+        <ngx-datatable-column name="Banner Image" prop="bannerImages">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                <img [src]="value[0] != null ? value[0] : '../../assets/images/logo.png'" height="25px" width="25px" alt="">
+            </ng-template>
+        </ngx-datatable-column>
+
+        <!-- <ngx-datatable-column name="Image 2" prop="images">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                <img [src]="value[1] != null ? value[1] : '../../assets/images/logo.png'" height="25px" width="25px" alt="">
+            </ng-template>
+        </ngx-datatable-column> -->
+
+        <ngx-datatable-column name="Action" prop="id">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <span class="px-2 py-2 cursor-pointer" data-toggle="tooltip" (click)="onEdit(row)"
+                    data-placement="right" title="Edit">
+                    <i class='bx bxs-pencil'></i>
+                </span>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>
+
+<!-- Form Started -->
+<div *ngIf="showCreateFrom">
+    <div style="padding: 0; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 5px 10px rgba(0,0,0,0.1);">
+        <div class="row">
+
+            <div class="col-md-4" style="border-right: 1px solid #ccc;">
+                <div class="col-md-12">
+
+                    <div style="padding: 10px; text-align: center; text-align: -webkit-center;">
+                        <h2 class="form-heading">Banner Details</h2>
+                        <div>
+                            <!-- <div class="input-field">
+                                <label>Heading</label>
+                                <input type="text" placeholder="Heading" name="Heading" [(ngModel)]='websiteIdToBeEdited.heading'>
+                            </div> -->
+
+                            <!-- <div class="input-field">
+                                <label>Description</label>
+                                <textarea placeholder="Description" name="Description" [(ngModel)]='websiteIdToBeEdited.description' id="Description" rows="5" style="height: auto;"></textarea>
+                            </div> -->
+
+                            <!-- <div class="input-field">
+                                <label>Details</label>
+                                <button (click)="openDialogWithTemplateRef(myDialog)" class="btn btn-primary">Add / Edit</button>
+                            </div>
+                            <ng-template #myDialog>
+                                <mat-dialog-content>
+                                    <div class="row">
+                                        <h1>Add Details</h1>
+                                        <ckeditor [(ngModel)]="websiteIdToBeEdited.timeForReadingMinutes" 
+                                            name="timeForReadingMinutes" #myckeditor="ngModel"
+                                            [config]="config"
+                                            [editor]="editor"
+                                            debounce="500" 
+                                            (paste)="onPaste($event)"
+                                            (change)="onChange($event)">
+                                        </ckeditor>
+                                    </div>
+                                </mat-dialog-content>
+                                <mat-dialog-actions align="end">
+                                    <button mat-button mat-dialog-close class="btn btn-danger">Cancel</button>
+                                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-primary">Save</button>
+                                  </mat-dialog-actions>
+                              </ng-template> -->
+
+                            <div class="input-field">
+                                <label>Banner URL</label>
+                                <input type="text" placeholder="Banner URL" name="Link1" [(ngModel)]='bannerUrls[0]'>
+                            </div>
+
+                            <!-- <div class="input-field">
+                                <label>Link 2</label>
+                                <input type="text" placeholder="Link 2" name="Link2" [(ngModel)]='links[1]'>
+                            </div> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8" style="border-right: 1px solid #ccc;">
+                <div style="padding: 10px;">
+                    <h2 class="form-heading">Images</h2>
+                    <div class="row">
+                        <div class="col-md-6 profile-pic" style="text-align: center;">
+                            <h3>image - 1 <span style="font-size: 10px;"> (size: 273px × 140 px)</span></h3>
+                            <ng-container *ngIf="isImage1Uploading">
+                              <div class="lds-ellipsis">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                              </div>
+                            </ng-container>
+                            <img *ngIf="!isImage1Uploading" class="blur link match-upload-image" style="width: 200px; height: 200px;" [src]="bannerIdToBeEdited.bannerImages[0]"
+                              (error)="onError($event)" (click)="bannerImageUpload.click()">
+                            <input type="file" #bannerImageUpload style="visibility:hidden;"
+                              (change)="onFileChanged($event,'image1')">
+                          </div>
+    
+                        <!-- <div class="col-md-6 profile-pic" style="text-align: center;">
+                            <h3>image - 2 <span style="font-size: 10px;"> (size: 1338px × 698 px)</span></h3>
+                            <ng-container *ngIf="isImage2Uploading">
+                            <div class="lds-ellipsis">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                            </ng-container>
+                            <img *ngIf="!isImage2Uploading" class="blur link match-upload-image" style="width: 200px; height: 200px;" [src]="websiteIdToBeEdited.images[1]"
+                            (error)="onError($event)" (click)="imageUpload.click()">
+                            <input type="file" #imageUpload style="visibility:hidden;"
+                            (change)="onFileChanged($event,'image2')">
+                        </div> -->
+
+                    </div>
+                    <div class="row" style="place-content: center; border-top: 1px solid #ccc; padding: 20px 0;">
+                        <button class="btn btn-primary" *ngIf="!bannerIdToBeEdited.id"
+                            style="width: fit-content;" (click)="createBanner()">Create Banner</button>
+                        <button class="btn btn-primary" *ngIf="bannerIdToBeEdited.id" style="width: fit-content;"
+                            (click)="updateBanner()">Update Banner</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Form Ended -->

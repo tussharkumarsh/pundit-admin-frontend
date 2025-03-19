@@ -1,0 +1,264 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    // font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: 'Karla', sans-serif;
+
+}
+
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+}
+
+.ngx-datatable {
+    height: 80vh;
+}
+
+.ngx-datatable.material {
+    box-shadow: none;
+    border: 1px solid #ccc;
+}
+
+
+.section-font-color{
+    font-family: sans-serif; 
+    color: #abaaaa;
+    input{
+        color: #abaaaa;
+    }
+    select{
+        color: #abaaaa;
+    }
+    textarea{
+        color: #abaaaa;
+    }
+
+}
+
+.section-row{
+    background-color: #fff; 
+    padding: 20px; 
+    border-radius: 10px;
+}
+
+datatable-body{
+    overflow-x: hidden;
+}
+
+.accordion-body{
+    background-color: #fff;
+}
+
+.ngx-datatable.material .datatable-body .datatable-row-detail {
+    background: #fff;
+    padding: 10px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #ddd;
+}
+
+
+.badge-table {
+    display: inline-block;
+    padding: 0.5em 0.5em;
+    font-size: 100%;
+    font-weight: 500;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    width: 120px;
+}
+
+.cut-text { 
+    width : 90%;
+    overflow:hidden;
+    display:inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+.cursor-pointer{
+    cursor: pointer !important;
+}
+
+.form-row-spacing .row{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #424141;
+    input{
+     color: #424141;   
+    }
+    textarea{
+        color: #424141;
+    }
+
+}
+
+.form-row-spacing-col .col-md-6{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.form-row-spacing-col .col-md-3{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.form-row-spacing-col .col-md-2{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.form-row-spacing-col .col-md-1{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.icon-title {
+    font-size: 12px;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.onHoverChange i{
+    font-size: 14px;
+    color: #000;
+    transform: scale(1.6);
+    transition-duration: 0.4s;
+}
+
+.onHoverChange i:hover{
+    color: red;
+    transform: scale(2,2);
+    transition-duration: 0.4s;
+}
+
+.onHoverChangeGreen i{
+    font-size: 14px;
+    color: rgb(8, 200, 8);
+    transform: scale(1.6);
+    transition-duration: 0.4s;
+}
+
+.onHoverChangeGreen i:hover{
+    color: rgb(6, 139, 6);
+    transform: scale(2,2);
+    transition-duration: 0.4s;
+}
+
+.onHoverChangeRed i{
+    font-size: 14px;
+    color: rgb(251, 56, 56);
+    transform: scale(1.6);
+    transition-duration: 0.4s;
+}
+
+.onHoverChangeRed i:hover{
+    color: red;
+    transform: scale(2,2);
+    transition-duration: 0.4s;
+}
+
+
+.customHead{
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 400;
+    padding-left: 12px;
+    border-left-width: 3px;
+    border-left-style: solid;
+    border-left-color: #418181;
+}
+
+.link:hover {
+    color: green !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+.link {
+    color: #488d91 !important;
+}
+
+.customHead {
+    margin: 18px
+}
+
+.content {
+    margin-top: 50px;
+}
+
+select {
+    -webkit-appearance: listbox !important
+}
+
+
+.datatable-header-cell { 
+    text-align: left; 
+    padding: .9rem 1.2rem; 
+    font-weight: 400; 
+    color: rgba(0,0,0,.54); 
+    vertical-align: bottom; 
+    font-size: 12px !important; 
+    font-weight: 500;
+}
+
+.datatable-body-cell{
+    font-size: 12px !important;
+    color: #495057 !important;
+}
+
+.ngx-datatable.material.striped{
+    background-color: #fff;
+}
+
+.ngx-datatable.material.striped .datatable-row-odd{
+    background-color: #f8f9fa;
+}
+
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+    z-index: 10000 !important;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+    position: absolute;
+    z-index: 99999 !important;
+    display: flex;
+    flex-direction: column;
+    min-width: 1px;
+    min-height: 1px;
+}

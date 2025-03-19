@@ -1,0 +1,317 @@
+<ngx-spinner size="medium" [type]="typeSelected"></ngx-spinner>
+
+<div class="" style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+    <div>
+        <h1 style="margin-bottom: 0;">Product</h1>
+        <p class="card-title-desc" style="margin-bottom: 0;">
+        </p>
+    </div>
+
+    <div class="d-flex">
+        <button class="backBtn" *ngIf="!showCreateFrom" (click)="firstcollapse.toggle()"
+            [attr.aria-expanded]="firstCollapse" aria-controls="collapseExample1"> <i class="bx bx-filter-alt"></i>
+        </button>
+
+        <button class="backBtn" (click)="createForm()">
+            <span *ngIf="showCreateFrom" class="btnText"><i class="bx bx-list-ol"></i></span>
+            <span *ngIf="!showCreateFrom" class="btnText" (click)="clearFields()"><i class='bx bx-plus-medical'></i></span>
+            <i class="uil uil-navigator"></i>
+        </button>
+    </div>
+
+</div>
+
+<div class="">
+    <div class="collapse multi-collapse show"
+        style="background-color: #fff; border: 1px solid #ccc; box-shadow: 0 5px 5px rgba(0,0,0,0.1); padding: 0; margin: 0 0 10px 0;"
+        #firstcollapse="ngbCollapse" [(ngbCollapse)]="firstCollapse">
+        <div class="card border shadow-none card-body text-muted mb-0" style="height: 100px;">
+
+            <div class="row">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!showCreateFrom">
+    <ngx-datatable #myTable class="material expandable striped" [columnMode]="ColumnMode.force" [headerHeight]="50"
+        [footerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [rows]="rows">
+        <ngx-datatable-column name="Product Name" prop="productName"></ngx-datatable-column>
+        <ngx-datatable-column name="Category" prop="category"></ngx-datatable-column>
+        <!-- <ngx-datatable-column name="Product Description" prop="description"></ngx-datatable-column>
+        <ngx-datatable-column name="Product Detail" prop="detail"></ngx-datatable-column> -->
+        <ngx-datatable-column name="Product Pricing" prop="pricing"></ngx-datatable-column>
+        <ngx-datatable-column name="Ratings" prop="ratings"></ngx-datatable-column>
+        <ngx-datatable-column name="Colours & Price" prop="coloursAndPrices">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                <span *ngFor="let item of Object.keys(value); let i = index">
+                    {{ item }} : {{ value[item] }} 
+                </span>
+            </ng-template>
+        </ngx-datatable-column>        
+        <ngx-datatable-column name="Status" prop="status">
+            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                <div class="form-check form-switch mb-3" dir="ltr">
+                    <input type="checkbox" class="form-check-input" id="customSwitch1" [checked]="value == 'ACTIVE' ? true : false" (change)="changeStatus($event, row)">
+                </div>
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Action" prop="id">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <span class="px-2 py-2 cursor-pointer" data-toggle="tooltip" (click)="onEdit(row)"
+                    data-placement="right" title="Edit">
+                    <i class='bx bxs-pencil'></i>
+                </span>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>
+
+<!-- Form Started -->
+<div *ngIf="showCreateFrom">
+    <div style="padding: 0; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 5px 10px rgba(0,0,0,0.1);">
+        <div class="row">
+
+            <div class="col-md-4" style="border-right: 1px solid #ccc;">
+                <div class="col-md-12">
+
+                    <div style="padding: 10px; text-align: center; text-align: -webkit-center;">
+                        <h2 class="form-heading">Product Details</h2>
+                        <div>
+                            <div class="input-field">
+                                <label>Name</label>
+                                <input type="text" placeholder="Product Name" name="Product Name" [(ngModel)]='productsIdToBeEdited.productName' >
+                            </div>
+
+                            <div class="input-field">
+                                <label>Category</label>
+                                <select name="Category" [(ngModel)]='productsIdToBeEdited.category'>
+                                    <option value='undefined' disabled>Select Category</option>
+                                    <option [value]=categoryItem.name *ngFor="let categoryItem of categoriesList">{{categoryItem.name}}</option>
+                                    <!-- <option value="Poker Chips Set">Poker Chips Set</option>
+                                    <option value="Tables">Tables</option>
+                                    <option value="Chairs">Chairs</option>
+                                    <option value="Chips">Chips</option>
+                                    <option value="Desks">Desks</option>
+                                    <option value="Gaming Station">Gaming Station</option> -->
+                                </select>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Sub category</label>
+                                <input type="text" placeholder="Sub Category" name="Sub Category" [(ngModel)]='subCategory'>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Description</label>
+                                <button (click)="openDialogWithTemplateRefDescription(Description)" class="btn btn-primary">Add / Edit Description</button>
+                                <!-- <input type="text" placeholder="Product Description" name="Product Description" [(ngModel)]='productsIdToBeEdited.description'> -->
+                            </div>
+                            <ng-template #Description>
+                                <mat-dialog-content>
+                                    <div class="row">
+                                        <div style="display: flex; place-items: center; padding: 10px 10px;">
+                                            <h1 style="margin: 0;">Add Description</h1> &nbsp;&nbsp;&nbsp; <span>(Max Image size:  900px X 450px)</span>
+                                        </div>
+                                        <ckeditor [(ngModel)]="productsIdToBeEdited.description" 
+                                            name="Description" #myckeditor="ngModel"
+                                            [config]="config"
+                                            [editor]="editor"
+                                            debounce="500" 
+                                            (paste)="onPaste($event)"
+                                            (change)="onChange($event)">
+                                        </ckeditor>
+                                    </div>
+                                </mat-dialog-content>
+                                <mat-dialog-actions align="end">
+                                    <button mat-button mat-dialog-close class="btn btn-danger">Cancel</button>
+                                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-primary">Save</button>
+                                  </mat-dialog-actions>
+                              </ng-template>
+
+                            <div class="input-field">
+                                <label>Product Detail</label>
+                                <button (click)="openDialogWithTemplateRefDetails(Details)" class="btn btn-primary">Add / Edit Product Deatils</button>
+                                <!-- <input type="text" placeholder="Product Detail" name="Product detail" [(ngModel)]='productsIdToBeEdited.detail'> -->
+                            </div>
+                            <ng-template #Details>
+                                <mat-dialog-content>
+                                    <div class="row">
+                                        <div style="display: flex; place-items: center; padding: 10px 10px;">
+                                            <h1 style="margin: 0;">Add Details</h1> &nbsp;&nbsp;&nbsp; <span>(Max Image size:  900px X 450px)</span>
+                                        </div>
+                                        <ckeditor [(ngModel)]="productsIdToBeEdited.detail" 
+                                            name="Details" #myckeditor="ngModel"
+                                            [config]="config"
+                                            [editor]="editor"
+                                            debounce="500" 
+                                            (paste)="onPaste($event)"
+                                            (change)="onChange($event)">
+                                        </ckeditor>
+                                    </div>
+                                </mat-dialog-content>
+                                <mat-dialog-actions align="end">
+                                    <button mat-button mat-dialog-close class="btn btn-danger">Cancel</button>
+                                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-primary">Save</button>
+                                  </mat-dialog-actions>
+                              </ng-template>
+
+                            
+                            <div class="input-field">
+                                <label>Pricing</label>
+                                <input type="text" placeholder="Product Pricing" name="Product Pricing" [(ngModel)]='productsIdToBeEdited.pricing'>
+                            </div>
+
+                            <!-- <div class="input-field">
+                                <label>Discount Amount</label>
+                                <input type="text" placeholder="Discount Amount" name="discountAmount" [(ngModel)]='productsIdToBeEdited.discountAmount'>
+                            </div> -->
+
+                            <!-- <div class="input-field">
+                                <label>Discount Percentage</label>
+                                <input type="text" placeholder="Discount Percentage" name="discountPercentage" [(ngModel)]='productsIdToBeEdited.discountPercentage'>
+                            </div> -->
+
+                            <div class="input-field">
+                                <label>Discount Code</label>
+                                <input type="text" placeholder="Discount Code" name="discountCode" [(ngModel)]='productsIdToBeEdited.discountCode'>
+                            </div>
+                            
+                            <div class="input-field">
+                                <label>Ratings</label>
+                                <input type="text" placeholder="Ratings" name="ratings" [(ngModel)]='productsIdToBeEdited.ratings'>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4" style="border-right: 1px solid #ccc;">
+                <div style="padding: 10px;">
+                    <h2 class="form-heading">Colours Details</h2>
+                    <div class="input-field">
+                        <label>Status</label>
+                        <select name="" id="" [(ngModel)]='productsIdToBeEdited.status'>
+                            <option value='undefined' disabled>Select Type</option>
+                            <option value="ACTIVE">Active</option>
+                            <option value="IN_ACTIVE">In Active</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Product Item</label>
+                        <div class="d-flex">
+                            <!-- <select name="" id="" [(ngModel)]='selectedColor'>
+                                <option value='undefined' disabled>Select Color</option>
+                                <option value="Green">Green</option>
+                                <option value="Red">Red</option>
+                                <option value="Yellow">Yellow</option>
+                            </select> -->
+                            <input type="text" placeholder="Name" name="colour" style="width: 110px; margin: 8px 5px 8px 0;" [(ngModel)]='selectedColor'>
+                            <input type="text" placeholder="Pricing" name="colour pricing" style="width: 110px; margin: 8px 10px;" [(ngModel)]='selectedColorPrice'>
+                            <button class="btn btn-primary" style="padding: 0 10px; margin: 8px 0;" (click)="addColorAndPrice()">Add</button>
+                        </div>
+                    </div>
+
+                    <div class="input-field">
+                        <label for=""></label>
+                        <span *ngIf="Object.keys(colorAndPrice).length == 0">No Product item Selected</span>
+                        <table class="table" *ngIf="Object.keys(colorAndPrice).length !== 0">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Item</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let item of Object.keys(colorAndPrice); let i = index">
+                                <th scope="row">{{ i+1 }}</th>
+                                <td>{{ item }}</td>
+                                <td>{{ colorAndPrice[item] }}</td>
+                                <td><i class='bx bx-trash' style="color: red;" (click)="removeSelectedColor(item)"></i></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+
+                    <div class="row" style="place-content: center; padding-top: 55px;">
+                        <button class="btn btn-primary" *ngIf="!productsIdToBeEdited.id"
+                            style="width: fit-content;" (click)="createProduct()">Create Product</button>
+                        <button class="btn btn-primary" *ngIf="productsIdToBeEdited.id" style="width: fit-content;"
+                            (click)="updateProduct()">Update Product</button>
+                    </div>
+
+                    
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div style="padding: 10px;">
+
+                        <h2 class="form-heading">Product Images</h2>
+                        <div class="row">
+                            <div class="col-md-6 profile-pic" style="text-align: center;">
+                                <h3>Product image <span style="font-size: 10px;"> (size: 300px × 300px)</span></h3>
+                                <ng-container *ngIf="isProductImageUploading">
+                                  <div class="lds-ellipsis">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                  </div>
+                                </ng-container>
+                                <img *ngIf="!isProductImageUploading" class="blur link match-upload-image" style="width: 150px; height: 150px;" [src]="productsIdToBeEdited.images"
+                                  (error)="onError($event)" (click)="productImageUpload.click()">
+                                <input type="file" #productImageUpload style="visibility:hidden;"
+                                  (change)="onFileChanged($event,'image1')">
+                              </div>    
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 profile-pic" style="text-align: center;">
+                                <h3>Preview Image Left <span style="font-size: 10px;"> <br> (size: 300px × 300px)</span></h3>
+                                <ng-container *ngIf="isImage1Uploading">
+                                  <div class="lds-ellipsis">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                  </div>
+                                </ng-container>
+                                <img *ngIf="!isImage1Uploading" class="blur link match-upload-image" style="width: 150px; height: 150px;" [src]="productsIdToBeEdited.previewImages[0]"
+                                  (error)="onError($event)" (click)="previewImageLeftUpload.click()">
+                                <input type="file" #previewImageLeftUpload style="visibility:hidden;"
+                                  (change)="onPreviewFileChanged($event,'imageLeft')">
+                              </div>
+        
+                            <div class="col-md-6 profile-pic" style="text-align: center;">
+                                <h3>Preview Image Right <span style="font-size: 10px;"> <br> (size: 300px × 300px)</span></h3>
+                                <ng-container *ngIf="isImage2Uploading">
+                                <div class="lds-ellipsis">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                </ng-container>
+                                <img *ngIf="!isImage2Uploading" class="blur link match-upload-image" style="width: 150px; height: 150px;" [src]="productsIdToBeEdited.previewImages[1]"
+                                (error)="onError($event)" (click)="previewImageRightUpload.click()">
+                                <input type="file" #previewImageRightUpload style="visibility:hidden;"
+                                (change)="onPreviewFileChanged($event,'imageRight')">
+                            </div>
+                        </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Form Ended -->

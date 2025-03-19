@@ -1,0 +1,156 @@
+<ngx-spinner size="medium" [type]="typeSelected"></ngx-spinner>
+
+<div class="" style="display: flex; justify-content: space-between; width: 100%;">
+    <div>
+        <h1>User Profile</h1>
+        <p class="card-title-desc">
+            <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. -->
+        </p>
+    </div>
+
+    <!-- <div class="d-flex">
+        <button class="backBtn" *ngIf="!showCreateFrom" (click)="firstcollapse.toggle()"
+            [attr.aria-expanded]="firstCollapse" aria-controls="collapseExample1"> <i class="bx bx-filter-alt"></i>
+        </button>
+
+        <button class="backBtn" (click)="createForm()">
+            <span *ngIf="showCreateFrom" class="btnText"><i class="bx bx-list-ol"></i></span>
+            <span *ngIf="!showCreateFrom" class="btnText"><i class="bx bxs-pencil"></i></span>
+            <i class="uil uil-navigator"></i>
+        </button>
+    </div> -->
+
+</div>
+
+<div class="">
+    <div class="collapse multi-collapse show"
+        style="background-color: #fff; border: 1px solid #ccc; box-shadow: 0 5px 5px rgba(0,0,0,0.1); padding: 0; margin: 0 0 10px 0;"
+        #firstcollapse="ngbCollapse" [(ngbCollapse)]="firstCollapse">
+        <div class="card border shadow-none card-body text-muted mb-0" style="height: 100px;">
+
+            <div class="row">
+                <!-- <div class="flexContainer" style="width: 50%;">
+                    <input type="text" placeholder="Type to filter the name column..." 
+                        (keyup)="updateFilter($event)" [(ngModel)]="searchServiceEngineer" class="form-control inputField">
+                    <button (click)="clearField()" style="background-color: #4070f4; color: #fff; border: #4070f4;"
+                        data-toggle="tooltip" data-placement="right" title="Clear">
+                        <i class="bx bx-x"></i>
+                    </button>
+                </div> -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- <div *ngIf="!showCreateFrom">
+    <ngx-datatable #myTable class="material expandable striped" [columnMode]="ColumnMode.force" [headerHeight]="50"
+        [footerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [rows]="rows">
+        <ngx-datatable-column name="Company Name " prop="CompanyName "></ngx-datatable-column>
+        <ngx-datatable-column name="Address" prop="Address"></ngx-datatable-column>
+        <ngx-datatable-column name="Aadhar number" prop="Aadhar number"></ngx-datatable-column>
+        <ngx-datatable-column name="Pan card" prop="Pan card "></ngx-datatable-column>
+        <ngx-datatable-column name="Created At" prop="createdAt">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                <span class="cut-text" data-toggle="tooltip" data-placement="right" title={{value}}>{{value |
+                    date:'longDate'}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Update" prop="id">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <span class="px-2 py-2 cursor-pointer" data-toggle="tooltip" (click)="onEdit(row)"
+                    data-placement="right" title="Edit">
+                    <i class='bx bxs-pencil'></i>
+                </span>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div> -->
+
+<!-- Form Started -->
+<div *ngIf="showCreateFrom">
+    <div style="padding: 0; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 5px 10px rgba(0,0,0,0.1);">
+        <div class="row">
+
+            <div class="col-md-4" style="border-right: 1px solid #ccc;">
+                <div class="col-md-12">
+
+                    <div style="padding: 10px; text-align: center; text-align: -webkit-center;">
+                        <!-- <h2 class="form-heading">Admin Details</h2> -->
+                        <div>
+                            <div class="input-field">
+                                <label>Name</label>
+                                <input type="text" placeholder="Name"
+                                    [(ngModel)]='employeeIdToBeEdited.password' name="Name">
+                            </div>
+                            <div class="input-field">
+                                <label>Contact <span style="color: red;">*</span></label>
+                                <input type="number" placeholder="Contact" maxlength="10"
+                                    onKeyPress="if(this.value.length==10) return false;"
+                                    [(ngModel)]='employeeIdToBeEdited.contact' name="contact">
+                            </div>
+                            <div class="input-field">
+                                <label>Email</label>
+                                <input type="email" placeholder="Email" [(ngModel)]='employeeIdToBeEdited.email'
+                                    name="email">
+                            </div>
+                            <div class="input-field">
+                                <label>Aadhar Card</label>
+                                <input type="number" placeholder="Aadhar Card Number"
+                                    [(ngModel)]='employeeIdToBeEdited.password' name="AadharNumber">
+                            </div>
+
+                            <div class="input-field">
+                                <label>PAN Card </label>
+                                <input type="text" placeholder="PAN Number" [(ngModel)]='employeeIdToBeEdited.password'
+                                    name="panNumber">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div style="padding: 10px;">
+                    <h2 class="form-heading">Address Details</h2>
+
+
+                    <div class="input-field">
+                        <label>Address</label>
+                        <input type="text" placeholder="Address" [(ngModel)]='employeeIdToBeEdited.address'
+                            name="address">
+                    </div>
+
+                    <div class="input-field">
+                        <label>City</label>
+                        <input type="text" placeholder="City" [(ngModel)]='employeeIdToBeEdited.city' name="city">
+                    </div>
+
+                    <div class="input-field">
+                        <label>State</label>
+                        <input type="text" placeholder="State" [(ngModel)]='employeeIdToBeEdited.state' name="state">
+                    </div>
+
+                    <div class="input-field">
+                        <label>Pincode</label>
+                        <input type="text" placeholder="Pincode" [(ngModel)]='employeeIdToBeEdited.pincode'
+                            name="pincode">
+                    </div>
+
+                    <div class="row" style="place-content: center;">
+                        <button class="btn btn-primary" [disabled]=!fieldsValidation *ngIf="!employeeIdToBeEdited.id"
+                            style="width: fit-content;" (click)="submitUser()">Update Profile</button>
+                        <button class="btn btn-primary" *ngIf="employeeIdToBeEdited.id" style="width: fit-content;"
+                            (click)="updateUser()">Update Profile</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Form Ended -->
