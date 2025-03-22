@@ -27,7 +27,6 @@ export class LoginUserProfileComponent implements OnInit {
   firstCollapse: boolean = true;
 
   employeeIdToBeEdited: any = {};
-
   categories: any[] = [];
   errorResponse: any;
 
