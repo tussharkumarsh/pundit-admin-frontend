@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import swal from 'sweetalert2'
+import swal from 'sweetalert2';
 import * as _ from "lodash";
 import { environment } from 'src/environments/environment';
 import { MatOptionSelectionChange, ThemePalette } from '@angular/material/core';
@@ -21,6 +21,7 @@ export class LoginUserProfileComponent implements OnInit {
   ColumnMode = ColumnMode;
   typeSelected = 'ball-fussion';
   @ViewChild('myTable') table: any;
+
 
   showCreateFrom: boolean = true;
   firstCollapse: boolean = true;
@@ -47,7 +48,7 @@ export class LoginUserProfileComponent implements OnInit {
   }
 
   createForm() {
-    this.showCreateFrom = !this.showCreateFrom
+    this.showCreateFrom = !this.showCreateFrom;
   }
 
   getAllCustomers() {
@@ -61,7 +62,7 @@ export class LoginUserProfileComponent implements OnInit {
   }
 
   onEdit(employee: any) {
-    this.showCreateFrom = true
+    this.showCreateFrom = true;
     this.employeeIdToBeEdited = employee;
   }
 
@@ -92,9 +93,9 @@ export class LoginUserProfileComponent implements OnInit {
       "dob": null,
       "location": null,
       "status": this.employeeIdToBeEdited.status
-    }
+    };
 
-    console.log("employeeIdToBeEdited", this.employeeIdToBeEdited)
+    console.log("employeeIdToBeEdited", this.employeeIdToBeEdited);
 
     // this._SignupService.createUser(this.employeeIdToBeEdited).subscribe((response: any) => {
     //   if (response.success) {
@@ -124,12 +125,12 @@ export class LoginUserProfileComponent implements OnInit {
 
   selectedRole: any[] = [];
 
-  onSelectRole(event:any){
-    console.log("event",event.target.value)
-    var onSelectedRole = event.target.value
+  onSelectRole(event: any) {
+    console.log("event", event.target.value);
+    var onSelectedRole = event.target.value;
     // console.log("value",value)
-    this.selectedRole.push(onSelectedRole)
-    console.log("this.selectedRole",this.selectedRole)
+    this.selectedRole.push(onSelectedRole);
+    console.log("this.selectedRole", this.selectedRole);
   }
 
 
@@ -137,7 +138,7 @@ export class LoginUserProfileComponent implements OnInit {
     // this.employeeIdToBeEdited.role = []
     for (let i = 0; i < this.selectedRole.length; i++) {
       if (this.employeeIdToBeEdited.role[i] != this.selectedRole[i]) {
-        this.employeeIdToBeEdited.role.push(this.selectedRole[i])
+        this.employeeIdToBeEdited.role.push(this.selectedRole[i]);
       }
     }
 
@@ -167,9 +168,9 @@ export class LoginUserProfileComponent implements OnInit {
       "dob": null,
       "location": null,
       "status": this.employeeIdToBeEdited.status
-    }
+    };
 
-    console.log("employeeIdToBeEdited", this.employeeIdToBeEdited)
+    console.log("employeeIdToBeEdited", this.employeeIdToBeEdited);
 
     // this._CustomerService.updateUser(this.employeeIdToBeEdited).subscribe((response: any) => {
     //   if (response.success) {
@@ -200,11 +201,11 @@ export class LoginUserProfileComponent implements OnInit {
   }
 
   changed(value: any) {
-    console.log(value)
+    console.log(value);
 
-    var status = true
+    var status = true;
     if (value.status == 'ACTIVE') {
-      status = false
+      status = false;
     }
 
     // this._CategoryService.updateStatus(value.id, status).subscribe((response: any) => {
@@ -234,7 +235,7 @@ export class LoginUserProfileComponent implements OnInit {
 
 
 
-  fieldsValidation: boolean = false
+  fieldsValidation: boolean = false;
   checkUserName() {
     // this._SignupService.checkUsernameAvailable(this.employeeIdToBeEdited.username).subscribe((response: any) => {
     //   if (response.success) {
