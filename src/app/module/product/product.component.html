@@ -10,7 +10,6 @@
         <button class="backBtn" *ngIf="!showCreateFrom" (click)="firstcollapse.toggle()"
             [attr.aria-expanded]="firstCollapse" aria-controls="collapseExample1"> <i class="bx bx-filter-alt"></i>
         </button>
-
         <button class="backBtn" (click)="createForm()">
             <span *ngIf="showCreateFrom" class="btnText"><i class="bx bx-list-ol"></i></span>
             <span *ngIf="!showCreateFrom" class="btnText" (click)="clearFields()"><i
