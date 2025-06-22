@@ -15,7 +15,8 @@
 
         <button class="backBtn" (click)="createForm()">
             <span *ngIf="showCreateFrom" class="btnText"><i class="bx bx-list-ol"></i></span>
-            <span *ngIf="!showCreateFrom" class="btnText" (click)="clearFields()"><i class='bx bx-plus-medical'></i></span>
+            <span *ngIf="!showCreateFrom" class="btnText" (click)="clearFields()"><i
+                    class='bx bx-plus-medical'></i></span>
             <i class="uil uil-navigator"></i>
         </button>
     </div>
@@ -53,7 +54,8 @@
 
         <ngx-datatable-column name="Image 1" prop="images">
             <ng-template ngx-datatable-cell-template let-value="value">
-                <img [src]="value[0] != null ? value[0] : '../../assets/images/logo.png'" height="25px" width="25px" alt="">
+                <img [src]="value[0] != null ? value[0] : '../../assets/images/logo.png'" height="25px" width="25px"
+                    alt="">
             </ng-template>
         </ngx-datatable-column>
 
@@ -87,35 +89,35 @@
                         <div>
                             <div class="input-field">
                                 <label>Heading</label>
-                                <input type="text" placeholder="Heading" name="Heading" [(ngModel)]='toppromotionsIdToBeEdited.heading'>
+                                <input type="text" placeholder="Heading" name="Heading"
+                                    [(ngModel)]='toppromotionsIdToBeEdited.heading'>
                             </div>
 
                             <div class="input-field">
                                 <label>Description</label>
-                                <button (click)="openDialogWithTemplateRefDescription(Description)" class="btn btn-primary">Add / Edit Description</button>
+                                <button (click)="openDialogWithTemplateRefDescription(Description)"
+                                    class="btn btn-primary">Add / Edit Description</button>
                                 <!-- <textarea placeholder="Description" name="Description" [(ngModel)]='toppromotionsIdToBeEdited.description' id="Description" rows="5" style="height: auto;"></textarea> -->
                             </div>
                             <ng-template #Description>
                                 <mat-dialog-content>
                                     <div class="row">
                                         <div style="display: flex; place-items: center; padding: 10px 10px;">
-                                            <h1 style="margin: 0;">Add Description</h1> &nbsp;&nbsp;&nbsp; <span>(Max Image size:  900px X 450px)</span>
+                                            <h1 style="margin: 0;">Add Description</h1> &nbsp;&nbsp;&nbsp; <span>(Max
+                                                Image size: 900px X 450px)</span>
                                         </div>
-                                        <ckeditor [(ngModel)]="toppromotionsIdToBeEdited.description" 
-                                            name="Description" #myckeditor="ngModel"
-                                            [config]="config"
-                                            [editor]="editor"
-                                            debounce="500" 
-                                            (paste)="onPaste($event)"
-                                            (change)="onChange($event)">
+                                        <ckeditor [(ngModel)]="toppromotionsIdToBeEdited.description" name="Description"
+                                            #myckeditor="ngModel" [config]="config" [editor]="editor" debounce="500"
+                                            (paste)="onPaste($event)" (change)="onChange($event)">
                                         </ckeditor>
                                     </div>
                                 </mat-dialog-content>
                                 <mat-dialog-actions align="end">
                                     <button mat-button mat-dialog-close class="btn btn-danger">Cancel</button>
-                                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-primary">Save</button>
-                                  </mat-dialog-actions>
-                              </ng-template>
+                                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial
+                                        class="btn btn-primary">Save</button>
+                                </mat-dialog-actions>
+                            </ng-template>
 
                             <div class="input-field">
                                 <label>Link 1</label>
@@ -139,33 +141,35 @@
                         <div class="col-md-6 profile-pic" style="text-align: center;">
                             <h3>image - 1 <span style="font-size: 10px;"> (size: 121px × 63 px)</span></h3>
                             <ng-container *ngIf="isImage1Uploading">
-                              <div class="lds-ellipsis">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                              </div>
+                                <div class="lds-ellipsis">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
                             </ng-container>
-                            <img *ngIf="!isImage1Uploading" class="blur link match-upload-image" style="width: 200px; height: 200px;" [src]="toppromotionsIdToBeEdited.images[0]"
-                              (error)="onError($event)" (click)="bannerImageUpload.click()">
+                            <img *ngIf="!isImage1Uploading" class="blur link match-upload-image"
+                                style="width: 200px; height: 200px;" [src]="toppromotionsIdToBeEdited.images[0]"
+                                (error)="onError($event)" (click)="bannerImageUpload.click()">
                             <input type="file" #bannerImageUpload style="visibility:hidden;"
-                              (change)="onFileChanged($event,'image1')">
-                          </div>
-    
+                                (change)="onFileChanged($event,'image1')">
+                        </div>
+
                         <div class="col-md-6 profile-pic" style="text-align: center;">
                             <h3>image - 2 <span style="font-size: 10px;"> (size: 1338px × 698 px)</span></h3>
                             <ng-container *ngIf="isImage2Uploading">
-                            <div class="lds-ellipsis">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
+                                <div class="lds-ellipsis">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
                             </ng-container>
-                            <img *ngIf="!isImage2Uploading" class="blur link match-upload-image" style="width: 200px; height: 200px;" [src]="toppromotionsIdToBeEdited.images[1]"
-                            (error)="onError($event)" (click)="imageUpload.click()">
+                            <img *ngIf="!isImage2Uploading" class="blur link match-upload-image"
+                                style="width: 200px; height: 200px;" [src]="toppromotionsIdToBeEdited.images[1]"
+                                (error)="onError($event)" (click)="imageUpload.click()">
                             <input type="file" #imageUpload style="visibility:hidden;"
-                            (change)="onFileChanged($event,'image2')">
+                                (change)="onFileChanged($event,'image2')">
                         </div>
 
                     </div>
