@@ -31,9 +31,6 @@
     </div>
 </div>
 
-
-
-
 <div *ngIf="!showCreateFrom">
     <ngx-datatable #myTable class="material expandable striped" [columnMode]="ColumnMode.force" [headerHeight]="50"
         [footerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [rows]="rows">
@@ -55,15 +52,12 @@
             <ng-template ngx-datatable-cell-template let-value="value">
                 <img [src]="value[0] != null ? value[0] : '../../assets/images/logo.png'" height="25px" width="25px"
                     alt="">
+
+
             </ng-template>
+
+
         </ngx-datatable-column>
-
-        <!-- <ngx-datatable-column name="Image 2" prop="images">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                <img [src]="value[1] != null ? value[1] : '../../assets/images/logo.png'" height="25px" width="25px" alt="">
-            </ng-template>
-        </ngx-datatable-column> -->
-
         <ngx-datatable-column name="Action" prop="id">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <span class="px-2 py-2 cursor-pointer" data-toggle="tooltip" (click)="onEdit(row)"
