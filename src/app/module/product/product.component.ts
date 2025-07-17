@@ -25,7 +25,6 @@ export class ProductComponent implements OnInit {
   @ViewChild('myTable') table: any;
 
 
-
   showCreateFrom: boolean = false;
   firstCollapse: boolean = true;
 
