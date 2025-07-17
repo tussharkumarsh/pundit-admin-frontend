@@ -37,6 +37,8 @@ export class ProductComponent implements OnInit {
   checked = false;
   disabled = false;
 
+
+
   colorAndPrice: any = {};
   selectedColor: any = undefined;
   selectedColorPrice: any = '';
